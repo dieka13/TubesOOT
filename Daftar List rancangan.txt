@@ -1,0 +1,11 @@
+GUI
+---
+Login
+Admin+Guru (Input+View+Update (Nilai)(Guru))
+Siswa (View+Komplain)
+
+Kelas
+-----
+Siswa
+Guru
+Nilai
