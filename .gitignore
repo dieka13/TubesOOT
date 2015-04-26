@@ -1,2 +1,4 @@
 /TubesOOT/nbproject
 TubesOOT/build.xml
+*.mf
+/TubesOOT/build/
