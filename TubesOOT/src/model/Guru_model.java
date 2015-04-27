@@ -27,4 +27,9 @@ public class Guru_model {
             return l;
         }
     }
+    
+    public ResultSet getAllMataKuliah() throws SQLException{
+        ResultSet res = d.getData("SELECT * FROM guru JOIN mata_kuliah ON('id_guru')");
+        return res;
+    }
 }
