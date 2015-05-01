@@ -1,3 +1,9 @@
 /TubesOOT/nbproject
 TubesOOT/build.xml
+<<<<<<< HEAD
 /Tubes/nbproject/private/
+=======
+*.mf
+/TubesOOT/build/
+>>>>>>> origin/master
+/Tubes/dist/
