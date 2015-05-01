@@ -40,7 +40,7 @@ public class Guru_model {
     
     public void insertKompomen(String idPel, String nama, String bobot, String ket) throws SQLException{
         try{
-            int idKompomen = d.query("INSERT INTO kompomen(nama, bobot, keterangan) VALUES('"+nama+"','"+bobot+"','"+ket+"')");
+            d.query("INSERT INTO kompomen(nama, bobot, keterangan) VALUES('"+nama+"','"+bobot+"','"+ket+"')");
             ResultSet rs = d.getStatement().getGeneratedKeys();
             rs.next();
             d.query("INSERT INTO kompomen_pelajaran VALUES('"+idPel+"','"+rs.getInt(1)+"')");
