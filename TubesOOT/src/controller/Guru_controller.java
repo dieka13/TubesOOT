@@ -9,8 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
@@ -18,7 +16,6 @@ import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import model.Guru_model;
 import view.Guru_view;
 import view.Login_guru_view;
@@ -228,7 +225,7 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
         tm.setNumRows(0);
         
         JTable tab = gui_guru.getTblSiswa();
-        
+        System.out.println(currentIdPel);
         ResultSet rs_nilai = md_guru.getNilai(currentIdPel, tab.getValueAt(tab.getSelectedRow(), 0).toString());
         while(rs_nilai.next()){
             tm.addRow(new Object[]{rs_nilai.getString("kompomen.id_kompomen"), rs_nilai.getString("kompomen.nama"), rs_nilai.getString("nilai")});

@@ -20,7 +20,7 @@ public class Guru_model {
     }
     
     public ResultSet login(String username, String password) throws SQLException, Exception{
-        ResultSet l = d.getData("SELECT * FROM guru JOIN pelajaran WHERE username='"+username+"' AND password = '"+password+"' LIMIT 1");
+        ResultSet l = d.getData("SELECT * FROM guru JOIN pelajaran USING(id_guru) WHERE username='"+username+"' AND password = '"+password+"' LIMIT 1");
         if(!l.next()){
             throw new Exception("Login gagal, periksa kembali username dan password anda");
         } else {
