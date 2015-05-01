@@ -6,7 +6,12 @@
 package view;
 
 import controller.Guru_controller;
+import javax.swing.JButton;
 import javax.swing.JLabel;
+import javax.swing.JTabbedPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,8 +39,35 @@ public class Guru_view extends javax.swing.JFrame {
         panelNama = new javax.swing.JPanel();
         lblNamaGuru = new javax.swing.JLabel();
         TabPaneGuru = new javax.swing.JTabbedPane();
-        jPanel2 = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tblKompomen = new javax.swing.JTable();
+        tabPaneKompomen = new javax.swing.JTabbedPane();
+        jPanel3 = new javax.swing.JPanel();
+        txtEditNama = new javax.swing.JTextField();
+        txtEditBobot = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        btnKompomenSimpan = new javax.swing.JButton();
+        btnKompomenHapus = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        txtAreaEditKeterangan = new javax.swing.JTextArea();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        txtTambahNama = new javax.swing.JTextField();
+        txtTambahBobot = new javax.swing.JTextField();
+        btnKompomenTambah = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        txtAreaTambahKeterangan = new javax.swing.JTextArea();
+        jPanel2 = new javax.swing.JPanel();
+        tabPaneNilai = new javax.swing.JTabbedPane();
+        jPanel5 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tblNilai = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -66,34 +98,261 @@ public class Guru_view extends javax.swing.JFrame {
         TabPaneGuru.setToolTipText("");
         TabPaneGuru.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jPanel2.setToolTipText("");
-        jPanel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblKompomen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblKompomen.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            },
+            new String [] {
+                "Id Kompomen", "Nama Kompomen", "Bobot", "Keterangan"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane1.setViewportView(tblKompomen);
+        if (tblKompomen.getColumnModel().getColumnCount() > 0) {
+            tblKompomen.getColumnModel().getColumn(0).setMinWidth(0);
+            tblKompomen.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblKompomen.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblKompomen.getColumnModel().getColumn(3).setMinWidth(0);
+            tblKompomen.getColumnModel().getColumn(3).setPreferredWidth(0);
+            tblKompomen.getColumnModel().getColumn(3).setMaxWidth(0);
+        }
+
+        tabPaneKompomen.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtEditNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtEditBobot.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel1.setText("Nama Kompomen");
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel2.setText("Bobot");
+
+        btnKompomenSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnKompomenSimpan.setText("Simpan");
+
+        btnKompomenHapus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnKompomenHapus.setText("Hapus");
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Keterangan");
+
+        txtAreaEditKeterangan.setColumns(20);
+        txtAreaEditKeterangan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtAreaEditKeterangan.setRows(5);
+        jScrollPane4.setViewportView(txtAreaEditKeterangan);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel5))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane4)
+                    .addComponent(txtEditBobot)
+                    .addComponent(txtEditNama))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnKompomenHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnKompomenSimpan))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(btnKompomenSimpan)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnKompomenHapus))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1)
+                            .addComponent(txtEditNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(txtEditBobot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(108, Short.MAX_VALUE))
         );
 
-        TabPaneGuru.addTab("Mata Kuliah", jPanel2);
+        tabPaneKompomen.addTab("Edit Kompomen", jPanel3);
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel3.setText("Nama Kompomen");
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel4.setText("Bobot");
+
+        txtTambahNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtTambahBobot.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btnKompomenTambah.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnKompomenTambah.setText("Tambah");
+
+        jLabel6.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel6.setText("Keterangan");
+
+        txtAreaTambahKeterangan.setColumns(20);
+        txtAreaTambahKeterangan.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        txtAreaTambahKeterangan.setRows(5);
+        jScrollPane5.setViewportView(txtAreaTambahKeterangan);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel4))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addGap(59, 59, 59)))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(txtTambahNama)
+                    .addComponent(jScrollPane5)
+                    .addComponent(txtTambahBobot))
+                .addGap(18, 18, 18)
+                .addComponent(btnKompomenTambah)
+                .addContainerGap(20, Short.MAX_VALUE))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(btnKompomenTambah)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel3)
+                            .addComponent(txtTambahNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(txtTambahBobot, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel6)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(108, Short.MAX_VALUE))
+        );
+
+        tabPaneKompomen.addTab("Tambah Kompomen", jPanel4);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 605, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addComponent(tabPaneKompomen))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 402, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(tabPaneKompomen)
+                .addContainerGap())
         );
 
-        TabPaneGuru.addTab("Nilai", jPanel1);
+        TabPaneGuru.addTab("Kompomen Nilai", jPanel1);
+
+        tabPaneNilai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        tblNilai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblNilai.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "id siswa", "Nama", "Kelas"
+            }
+        ));
+        jScrollPane2.setViewportView(tblNilai);
+        if (tblNilai.getColumnModel().getColumnCount() > 0) {
+            tblNilai.getColumnModel().getColumn(0).setMinWidth(0);
+            tblNilai.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblNilai.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jButton1.setText("Nilai");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+        );
+
+        tabPaneNilai.addTab("Daftar Siswa", jPanel5);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabPaneNilai)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(tabPaneNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(236, Short.MAX_VALUE))
+        );
+
+        TabPaneGuru.addTab("Nilai", jPanel2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,8 +371,8 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(TabPaneGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(TabPaneGuru)
+                .addContainerGap())
         );
 
         pack();
@@ -156,19 +415,101 @@ public class Guru_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabPaneGuru;
+    private javax.swing.JButton btnKompomenHapus;
+    private javax.swing.JButton btnKompomenSimpan;
+    private javax.swing.JButton btnKompomenTambah;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblNamaGuru;
     private javax.swing.JPanel panelNama;
+    private javax.swing.JTabbedPane tabPaneKompomen;
+    private javax.swing.JTabbedPane tabPaneNilai;
+    private javax.swing.JTable tblKompomen;
+    private javax.swing.JTable tblNilai;
+    private javax.swing.JTextArea txtAreaEditKeterangan;
+    private javax.swing.JTextArea txtAreaTambahKeterangan;
+    private javax.swing.JTextField txtEditBobot;
+    private javax.swing.JTextField txtEditNama;
+    private javax.swing.JTextField txtTambahBobot;
+    private javax.swing.JTextField txtTambahNama;
     // End of variables declaration//GEN-END:variables
 
-    public void addActionListener(Guru_controller aThis) {
-        
+    public void addActionListener(Guru_controller gc) {
+        btnKompomenHapus.addActionListener(gc);
+        btnKompomenSimpan.addActionListener(gc);
+        btnKompomenTambah.addActionListener(gc);
+    }
+    
+    public void addListSelectionListener(Guru_controller gc){
+        tblKompomen.getSelectionModel().addListSelectionListener(gc);
     }
 
     public JLabel getLblNamaGuru() {
         return lblNamaGuru;
     }
+
+    public JTable getTblKompomen() {
+        return tblKompomen;
+    }
+
+    public JButton getBtnKompomenHapus() {
+        return btnKompomenHapus;
+    }
+
+    public JButton getBtnKompomenSimpan() {
+        return btnKompomenSimpan;
+    }
+
+    public JButton getBtnKompomenTambah() {
+        return btnKompomenTambah;
+    }
+
+    public JTextField getTxtEditBobot() {
+        return txtEditBobot;
+    }
+
+    public JTextField getTxtEditNama() {
+        return txtEditNama;
+    }
+
+    public JTextField getTxtTambahBobot() {
+        return txtTambahBobot;
+    }
+
+    public JTextField getTxtTambahNama() {
+        return txtTambahNama;
+    }
+
+    public JTextArea getTxtAreaEditKeterangan() {
+        return txtAreaEditKeterangan;
+    }
+
+    public JTextArea getTxtAreaTambahKeterangan() {
+        return txtAreaTambahKeterangan;
+    }
+
+    public JTabbedPane getTabPaneGuru() {
+        return TabPaneGuru;
+    }
+
+    public JTabbedPane getTabPaneKompomen() {
+        return tabPaneKompomen;
+    }
+    
     
     
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 25, 2015 at 12:42 PM
+-- Generation Time: May 01, 2015 at 12:10 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Database: `oot`
 --
-CREATE DATABASE IF NOT EXISTS `oot` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `oot`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +26,6 @@ USE `oot`;
 -- Table structure for table `guru`
 --
 
-DROP TABLE IF EXISTS `guru`;
 CREATE TABLE IF NOT EXISTS `guru` (
 `id_guru` int(4) NOT NULL,
   `username` varchar(40) NOT NULL,
@@ -50,39 +47,46 @@ INSERT INTO `guru` (`id_guru`, `username`, `password`, `nama`, `admin`) VALUES
 -- Table structure for table `kompomen`
 --
 
-DROP TABLE IF EXISTS `kompomen`;
 CREATE TABLE IF NOT EXISTS `kompomen` (
 `id_kompomen` int(4) NOT NULL,
   `nama` varchar(40) NOT NULL,
-  `keterangan` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `bobot` int(11) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `kompomen`
+--
+
+INSERT INTO `kompomen` (`id_kompomen`, `nama`, `bobot`, `keterangan`) VALUES
+(3, 'Harian', 40, ''),
+(5, 'UAS', 30, 'Nilai Ujian Akhir Semester'),
+(6, 'Presensi', 10, 'Total Kehadiran'),
+(7, 'tes', 10, 'tes'),
+(8, 'tes', 10, 'tes'),
+(17, 'Harian', 30, 'Nilai Ulangan Harian'),
+(18, 'UTS', 20, 'Nilai Ulangan Tengah Semester'),
+(19, 'UAS', 20, 'Nilai Ulangan Akhir Semester');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `kompomen_mata_kuliah`
+-- Table structure for table `kompomen_pelajaran`
 --
 
-DROP TABLE IF EXISTS `kompomen_mata_kuliah`;
-CREATE TABLE IF NOT EXISTS `kompomen_mata_kuliah` (
-  `id_mata_kuliah` int(11) NOT NULL,
+CREATE TABLE IF NOT EXISTS `kompomen_pelajaran` (
+  `id_pelajaran` int(11) NOT NULL,
   `id_kompomen` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
--- --------------------------------------------------------
-
 --
--- Table structure for table `mata_kuliah`
+-- Dumping data for table `kompomen_pelajaran`
 --
 
-DROP TABLE IF EXISTS `mata_kuliah`;
-CREATE TABLE IF NOT EXISTS `mata_kuliah` (
-`id_mata_kuliah` int(4) NOT NULL,
-  `id_guru` int(4) NOT NULL,
-  `nama` varchar(40) NOT NULL,
-  `sks` int(1) NOT NULL,
-  `keterangan` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+INSERT INTO `kompomen_pelajaran` (`id_pelajaran`, `id_kompomen`) VALUES
+(1, 17),
+(1, 18),
+(1, 19);
 
 -- --------------------------------------------------------
 
@@ -90,7 +94,6 @@ CREATE TABLE IF NOT EXISTS `mata_kuliah` (
 -- Table structure for table `nilai`
 --
 
-DROP TABLE IF EXISTS `nilai`;
 CREATE TABLE IF NOT EXISTS `nilai` (
   `id_siswa` int(4) NOT NULL,
   `id_kompomen` int(4) NOT NULL,
@@ -100,16 +103,44 @@ CREATE TABLE IF NOT EXISTS `nilai` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pelajaran`
+--
+
+CREATE TABLE IF NOT EXISTS `pelajaran` (
+`id_pelajaran` int(4) NOT NULL,
+  `id_guru` int(4) NOT NULL,
+  `nama` varchar(40) NOT NULL,
+  `sks` int(1) NOT NULL,
+  `keterangan` text NOT NULL
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pelajaran`
+--
+
+INSERT INTO `pelajaran` (`id_pelajaran`, `id_guru`, `nama`, `sks`, `keterangan`) VALUES
+(1, 1, 'IPA', 0, '');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `siswa`
 --
 
-DROP TABLE IF EXISTS `siswa`;
 CREATE TABLE IF NOT EXISTS `siswa` (
 `id_siswa` int(4) NOT NULL,
   `username` varchar(40) NOT NULL,
   `password` varchar(40) NOT NULL,
   `kelas` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `siswa`
+--
+
+INSERT INTO `siswa` (`id_siswa`, `username`, `password`, `kelas`) VALUES
+(1, 'siswa', 'siswa', 'K 01'),
+(2, 'siswa2', 'siswa2', 'K 2');
 
 --
 -- Indexes for dumped tables
@@ -128,22 +159,22 @@ ALTER TABLE `kompomen`
  ADD PRIMARY KEY (`id_kompomen`);
 
 --
--- Indexes for table `kompomen_mata_kuliah`
+-- Indexes for table `kompomen_pelajaran`
 --
-ALTER TABLE `kompomen_mata_kuliah`
- ADD KEY `id_mata_kuliah` (`id_mata_kuliah`,`id_kompomen`), ADD KEY `id_kompomen` (`id_kompomen`);
-
---
--- Indexes for table `mata_kuliah`
---
-ALTER TABLE `mata_kuliah`
- ADD PRIMARY KEY (`id_mata_kuliah`), ADD KEY `id_guru` (`id_guru`);
+ALTER TABLE `kompomen_pelajaran`
+ ADD PRIMARY KEY (`id_pelajaran`,`id_kompomen`), ADD KEY `id_kompomen` (`id_kompomen`);
 
 --
 -- Indexes for table `nilai`
 --
 ALTER TABLE `nilai`
  ADD KEY `id_siswa` (`id_siswa`), ADD KEY `id_kompomen` (`id_kompomen`);
+
+--
+-- Indexes for table `pelajaran`
+--
+ALTER TABLE `pelajaran`
+ ADD PRIMARY KEY (`id_pelajaran`), ADD KEY `id_guru` (`id_guru`);
 
 --
 -- Indexes for table `siswa`
@@ -164,33 +195,27 @@ MODIFY `id_guru` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 -- AUTO_INCREMENT for table `kompomen`
 --
 ALTER TABLE `kompomen`
-MODIFY `id_kompomen` int(4) NOT NULL AUTO_INCREMENT;
+MODIFY `id_kompomen` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=20;
 --
--- AUTO_INCREMENT for table `mata_kuliah`
+-- AUTO_INCREMENT for table `pelajaran`
 --
-ALTER TABLE `mata_kuliah`
-MODIFY `id_mata_kuliah` int(4) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `pelajaran`
+MODIFY `id_pelajaran` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `siswa`
 --
 ALTER TABLE `siswa`
-MODIFY `id_siswa` int(4) NOT NULL AUTO_INCREMENT;
+MODIFY `id_siswa` int(4) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=3;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `kompomen_mata_kuliah`
+-- Constraints for table `kompomen_pelajaran`
 --
-ALTER TABLE `kompomen_mata_kuliah`
-ADD CONSTRAINT `kompomen_mata_kuliah_ibfk_1` FOREIGN KEY (`id_mata_kuliah`) REFERENCES `mata_kuliah` (`id_mata_kuliah`) ON DELETE CASCADE ON UPDATE CASCADE,
-ADD CONSTRAINT `kompomen_mata_kuliah_ibfk_2` FOREIGN KEY (`id_kompomen`) REFERENCES `kompomen` (`id_kompomen`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `mata_kuliah`
---
-ALTER TABLE `mata_kuliah`
-ADD CONSTRAINT `mata_kuliah_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `kompomen_pelajaran`
+ADD CONSTRAINT `kompomen_pelajaran_ibfk_1` FOREIGN KEY (`id_pelajaran`) REFERENCES `pelajaran` (`id_pelajaran`) ON DELETE CASCADE ON UPDATE CASCADE,
+ADD CONSTRAINT `kompomen_pelajaran_ibfk_2` FOREIGN KEY (`id_kompomen`) REFERENCES `kompomen` (`id_kompomen`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `nilai`
@@ -198,6 +223,12 @@ ADD CONSTRAINT `mata_kuliah_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`
 ALTER TABLE `nilai`
 ADD CONSTRAINT `nilai_ibfk_1` FOREIGN KEY (`id_siswa`) REFERENCES `siswa` (`id_siswa`) ON DELETE CASCADE ON UPDATE CASCADE,
 ADD CONSTRAINT `nilai_ibfk_2` FOREIGN KEY (`id_kompomen`) REFERENCES `kompomen` (`id_kompomen`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `pelajaran`
+--
+ALTER TABLE `pelajaran`
+ADD CONSTRAINT `pelajaran_ibfk_1` FOREIGN KEY (`id_guru`) REFERENCES `guru` (`id_guru`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

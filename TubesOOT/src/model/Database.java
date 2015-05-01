@@ -19,8 +19,18 @@ public class Database {
         return rs;
     }
     
-    public void query(String SQLString) throws SQLException{
-            stmt.executeUpdate(SQLString);
+    public int query(String SQLString) throws SQLException{
+        int id = stmt.executeUpdate(SQLString, Statement.RETURN_GENERATED_KEYS);
+        return id;
     }
+
+    public Connection getConn() {
+        return conn;
+    }
+
+    public Statement getStatement() {
+        return stmt;
+    }
+    
     
 }
