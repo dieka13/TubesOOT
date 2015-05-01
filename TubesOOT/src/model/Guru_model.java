@@ -56,4 +56,26 @@ public class Guru_model {
     public void updateKompomen(String idKomp, String nama, String bobot, String ket) throws SQLException{
         d.query("UPDATE kompomen SET nama='"+nama+"', bobot='"+bobot+"', keterangan='"+ket+"' WHERE id_kompomen='"+idKomp+"' LIMIT 1");
     }
+    
+    public ResultSet getAllSiswa() throws SQLException{
+        ResultSet rs = d.getData("SELECT * FROM siswa");
+        return rs;
+    }
+    
+    public ResultSet getNilai(String id_pelajaran, String id_siswa) throws SQLException{
+        ResultSet rs = d.getData("SELECT * FROM kompomen CROSS JOIN siswa "
+                + "LEFT JOIN nilai USING(id_siswa, id_kompomen)"
+                + "JOIN kompomen_pelajaran USING(id_kompomen)"
+                + " WHERE id_siswa='"+id_siswa+"'"
+                + " AND id_pelajaran='"+id_pelajaran+"'");
+        return rs;
+    }
+    
+    public void insertNilai(String id_siswa, String id_kompomen, String nilai) throws SQLException{
+        d.query("INSERT INTO nilai(id_siswa, id_kompomen, nilai) VALUES('"+id_siswa+"','"+id_kompomen+"','"+nilai+"')");
+    }
+    
+    public void updateNilai(String id_siswa, String id_kompomen, String nilai) throws SQLException{
+        d.query("UPDATE nilai SET nilai ='"+nilai+"' WHERE id_siswa='"+id_siswa+"' AND id_kompomen='"+id_kompomen+"'");
+    }
 }

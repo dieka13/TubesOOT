@@ -66,8 +66,15 @@ public class Guru_view extends javax.swing.JFrame {
         tabPaneNilai = new javax.swing.JTabbedPane();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
+        tblSiswa = new javax.swing.JTable();
+        btnNilai = new javax.swing.JButton();
+        jPanel6 = new javax.swing.JPanel();
+        jScrollPane3 = new javax.swing.JScrollPane();
         tblNilai = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
+        txtNilai = new javax.swing.JTextField();
+        btnInput = new javax.swing.JButton();
+        lblNamaSiswa = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -170,7 +177,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnKompomenHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKompomenSimpan))
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,7 +200,7 @@ public class Guru_view extends javax.swing.JFrame {
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel5)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabPaneKompomen.addTab("Edit Kompomen", jPanel3);
@@ -240,7 +247,7 @@ public class Guru_view extends javax.swing.JFrame {
                     .addComponent(txtTambahBobot))
                 .addGap(18, 18, 18)
                 .addComponent(btnKompomenTambah)
-                .addContainerGap(20, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +267,7 @@ public class Guru_view extends javax.swing.JFrame {
                         .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel6)
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         tabPaneKompomen.addTab("Tambah Kompomen", jPanel4);
@@ -290,50 +297,120 @@ public class Guru_view extends javax.swing.JFrame {
 
         tabPaneNilai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        tblNilai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tblNilai.setModel(new javax.swing.table.DefaultTableModel(
+        tblSiswa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        tblSiswa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "id siswa", "Nama", "Kelas"
             }
         ));
-        jScrollPane2.setViewportView(tblNilai);
+        jScrollPane2.setViewportView(tblSiswa);
+        if (tblSiswa.getColumnModel().getColumnCount() > 0) {
+            tblSiswa.getColumnModel().getColumn(0).setMinWidth(0);
+            tblSiswa.getColumnModel().getColumn(0).setPreferredWidth(0);
+            tblSiswa.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        btnNilai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnNilai.setText("Nilai");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnNilai)))
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnNilai)
+                .addContainerGap(239, Short.MAX_VALUE))
+        );
+
+        tabPaneNilai.addTab("Daftar Siswa", jPanel5);
+
+        tblNilai.setFont(new java.awt.Font("Segoe UI", 0, 12)); // NOI18N
+        tblNilai.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "id_kompomen", "Nama Kompomen", "Nilai"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane3.setViewportView(tblNilai);
         if (tblNilai.getColumnModel().getColumnCount() > 0) {
             tblNilai.getColumnModel().getColumn(0).setMinWidth(0);
             tblNilai.getColumnModel().getColumn(0).setPreferredWidth(0);
             tblNilai.getColumnModel().getColumn(0).setMaxWidth(0);
         }
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jButton1.setText("Nilai");
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel7.setText("Nilai");
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 484, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
+        txtNilai.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btnInput.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnInput.setText("Input");
+
+        lblNamaSiswa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        lblNamaSiswa.setText("Nama Siswa");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(16, 16, 16)
+                        .addComponent(txtNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnInput, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addComponent(lblNamaSiswa)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblNamaSiswa)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnInput)
+                    .addComponent(txtNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel7))
+                .addContainerGap(195, Short.MAX_VALUE))
         );
 
-        tabPaneNilai.addTab("Daftar Siswa", jPanel5);
+        tabPaneNilai.addTab("Nilai", jPanel6);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -346,10 +423,10 @@ public class Guru_view extends javax.swing.JFrame {
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPaneNilai, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(236, Short.MAX_VALUE))
+                .addComponent(tabPaneNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         TabPaneGuru.addTab("Nilai", jPanel2);
@@ -371,7 +448,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(TabPaneGuru)
+                .addComponent(TabPaneGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -415,35 +492,42 @@ public class Guru_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabPaneGuru;
+    private javax.swing.JButton btnInput;
     private javax.swing.JButton btnKompomenHapus;
     private javax.swing.JButton btnKompomenSimpan;
     private javax.swing.JButton btnKompomenTambah;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnNilai;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JLabel lblNamaGuru;
+    private javax.swing.JLabel lblNamaSiswa;
     private javax.swing.JPanel panelNama;
     private javax.swing.JTabbedPane tabPaneKompomen;
     private javax.swing.JTabbedPane tabPaneNilai;
     private javax.swing.JTable tblKompomen;
     private javax.swing.JTable tblNilai;
+    private javax.swing.JTable tblSiswa;
     private javax.swing.JTextArea txtAreaEditKeterangan;
     private javax.swing.JTextArea txtAreaTambahKeterangan;
     private javax.swing.JTextField txtEditBobot;
     private javax.swing.JTextField txtEditNama;
+    private javax.swing.JTextField txtNilai;
     private javax.swing.JTextField txtTambahBobot;
     private javax.swing.JTextField txtTambahNama;
     // End of variables declaration//GEN-END:variables
@@ -452,10 +536,17 @@ public class Guru_view extends javax.swing.JFrame {
         btnKompomenHapus.addActionListener(gc);
         btnKompomenSimpan.addActionListener(gc);
         btnKompomenTambah.addActionListener(gc);
+        btnInput.addActionListener(gc);
+        btnNilai.addActionListener(gc);
     }
     
     public void addListSelectionListener(Guru_controller gc){
         tblKompomen.getSelectionModel().addListSelectionListener(gc);
+        tblNilai.getSelectionModel().addListSelectionListener(gc);
+    }
+    
+    public void addChangeListener(Guru_controller gc){
+        tabPaneNilai.addChangeListener(gc);
     }
 
     public JLabel getLblNamaGuru() {
@@ -509,7 +600,34 @@ public class Guru_view extends javax.swing.JFrame {
     public JTabbedPane getTabPaneKompomen() {
         return tabPaneKompomen;
     }
-    
-    
+
+    public JTabbedPane getTabPaneNilai() {
+        return tabPaneNilai;
+    }
+
+    public JTable getTblSiswa() {
+        return tblSiswa;
+    }
+
+    public JTable getTblNilai() {
+        return tblNilai;
+    }
+
+    public JTextField getTxtNilai() {
+        return txtNilai;
+    }
+
+    public JButton getBtnInput() {
+        return btnInput;
+    }
+
+    public JButton getBtnNilai() {
+        return btnNilai;
+    }
+
+    public JLabel getLblNamaSiswa() {
+        return lblNamaSiswa;
+    }
+
     
 }

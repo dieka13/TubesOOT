@@ -13,6 +13,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
@@ -25,11 +27,11 @@ import view.Login_guru_view;
  *
  * @author dieka
  */
-public class Guru_controller implements ActionListener, ListSelectionListener{
+public class Guru_controller implements ActionListener, ListSelectionListener, ChangeListener{
     private Login_guru_view gui_login;
     private Guru_view gui_guru;
     private Guru_model md_guru;
-    private String currentUserName, currentName, currentId, currentIdPel;
+    private String currentUserName, currentName, currentId, currentIdPel, currentSiswaId;
     private boolean isAdmin = false;
     
     public Guru_controller(){
@@ -63,10 +65,13 @@ public class Guru_controller implements ActionListener, ListSelectionListener{
                 gui_guru = new Guru_view();
                 gui_guru.addActionListener(this);
                 gui_guru.addListSelectionListener(this);
+                gui_guru.addChangeListener(this);
+                
                 gui_guru.getLblNamaGuru().setText(currentName+" ("+currentUserName+") ");
                 gui_guru.setVisible(true);
                 
                 refreshTabelKompomen();
+                refreshTabelSiswa();
                 
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
@@ -84,7 +89,6 @@ public class Guru_controller implements ActionListener, ListSelectionListener{
             
         } else if (ae.getSource() == gui_guru.getBtnKompomenHapus()){
             JTable tbl = gui_guru.getTblKompomen();
-            TableModel tm = tbl.getModel();
             try {
                 md_guru.deleteKompomen(tbl.getValueAt(tbl.getSelectedRow(), 0).toString());
                 refreshTabelKompomen();
@@ -102,9 +106,76 @@ public class Guru_controller implements ActionListener, ListSelectionListener{
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
-        } 
+            
+        } else if(ae.getSource() == gui_guru.getBtnNilai()){
+            gui_guru.getTabPaneNilai().setSelectedIndex(1);
+            
+        } else if(ae.getSource() == gui_guru.getBtnInput()){
+            JTable tbl = gui_guru.getTblNilai();
+            if(tbl.getValueAt(tbl.getSelectedRow(), 2) == null){
+                
+                try {
+                    md_guru.insertNilai(currentSiswaId, tbl.getValueAt(tbl.getSelectedRow(), 0).toString(), gui_guru.getTxtNilai().getText());
+                    gui_guru.getTxtNilai().setText("");
+                    refreshTabelNilai();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(gui_login, ex, "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                
+                try {
+                    md_guru.updateNilai(currentSiswaId, tbl.getValueAt(tbl.getSelectedRow(), 0).toString(), gui_guru.getTxtNilai().getText());
+                    gui_guru.getTxtNilai().setText("");
+                    refreshTabelNilai();
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
     }
 
+    
+    @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        if(lse.getSource() == gui_guru.getTblKompomen().getSelectionModel() && !lse.getValueIsAdjusting()){
+            if(gui_guru.getTabPaneGuru().getSelectedIndex() == 0){
+                JTable tbl = gui_guru.getTblKompomen();
+                if(tbl.getSelectedRow() != -1){
+                    gui_guru.getTxtEditNama().setText(tbl.getValueAt(tbl.getSelectedRow(), 1).toString());
+                    gui_guru.getTxtEditBobot().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
+                    gui_guru.getTxtAreaEditKeterangan().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
+                } 
+            }
+            
+        } else if (lse.getSource() == gui_guru.getTblNilai().getSelectionModel() && !lse.getValueIsAdjusting()){
+            
+            JTable tbl = gui_guru.getTblNilai();
+            if(tbl.getSelectedRow() != -1){
+                gui_guru.getTxtNilai().setText(tbl.getValueAt(tbl.getSelectedRow(), 2) == null ? "" : tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
+            }
+        }
+    }
+    
+    
+    @Override
+    public void stateChanged(ChangeEvent ce) {
+        if(ce.getSource() == gui_guru.getTabPaneNilai()){
+            if(gui_guru.getTabPaneNilai().getSelectedIndex() == 1){
+                try {
+                    
+                    JTable tbl = gui_guru.getTblSiswa();
+                    gui_guru.getLblNamaSiswa().setText("Nama : "+tbl.getValueAt(tbl.getSelectedRow(), 1).toString());
+                    currentSiswaId = tbl.getValueAt(tbl.getSelectedRow(), 0).toString();
+                    
+                    refreshTabelNilai();
+                    
+                } catch (SQLException ex) {
+                    JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        }
+    }
+    
     public Login_guru_view getView() {
         return gui_login;
     }
@@ -119,21 +190,6 @@ public class Guru_controller implements ActionListener, ListSelectionListener{
 
     public boolean isAdmin() {
         return isAdmin;
-    }
-
-    @Override
-    public void valueChanged(ListSelectionEvent lse) {
-        if(lse.getSource() == gui_guru.getTblKompomen().getSelectionModel() && !lse.getValueIsAdjusting()){
-            if(gui_guru.getTabPaneGuru().getSelectedIndex() == 0){
-                JTable tbl = gui_guru.getTblKompomen();
-                if(tbl.getSelectedRow() != -1){
-                    gui_guru.getTxtEditNama().setText(tbl.getValueAt(tbl.getSelectedRow(), 1).toString());
-                    gui_guru.getTxtEditBobot().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
-                    gui_guru.getTxtAreaEditKeterangan().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
-                }
-                
-            }
-        }
     }
     
     public void refreshTabelKompomen() throws SQLException{
@@ -150,6 +206,32 @@ public class Guru_controller implements ActionListener, ListSelectionListener{
             gui_guru.getTabPaneKompomen().setSelectedIndex(0);
         } else {
             gui_guru.getTabPaneKompomen().setSelectedIndex(1);
+        }
+    }
+    
+    public void refreshTabelSiswa() throws SQLException{
+        DefaultTableModel tm = (DefaultTableModel) gui_guru.getTblSiswa().getModel();
+        tm.setNumRows(0);
+        
+        ResultSet rs_siswa = md_guru.getAllSiswa();
+        while(rs_siswa.next()){
+            tm.addRow(new Object[]{rs_siswa.getString("id_siswa"), rs_siswa.getString("nama"), rs_siswa.getString("kelas")});
+        }
+        
+        if(tm.getRowCount() > 0){
+            gui_guru.getTblSiswa().setRowSelectionInterval(0,0);
+        } 
+    }
+    
+    public void refreshTabelNilai() throws SQLException{
+        DefaultTableModel tm = (DefaultTableModel) gui_guru.getTblNilai().getModel();
+        tm.setNumRows(0);
+        
+        JTable tab = gui_guru.getTblSiswa();
+        
+        ResultSet rs_nilai = md_guru.getNilai(currentIdPel, tab.getValueAt(tab.getSelectedRow(), 0).toString());
+        while(rs_nilai.next()){
+            tm.addRow(new Object[]{rs_nilai.getString("kompomen.id_kompomen"), rs_nilai.getString("kompomen.nama"), rs_nilai.getString("nilai")});
         }
     }
     
