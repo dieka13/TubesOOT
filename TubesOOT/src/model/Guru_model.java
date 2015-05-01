@@ -20,13 +20,19 @@ public class Guru_model {
     }
     
     public ResultSet login(String username, String password) throws SQLException, Exception{
+<<<<<<< HEAD
+        ResultSet l = d.getData("SELECT * FROM guru WHERE username='"+username+"' AND password = '"+password+"' LIMIT 1");
+=======
         ResultSet l = d.getData("SELECT * FROM guru JOIN pelajaran WHERE username='"+username+"' AND password = '"+password+"' LIMIT 1");
+>>>>>>> origin/master
         if(!l.next()){
             throw new Exception("Login gagal, periksa kembali username dan password anda");
         } else {
             return l;
         }
     }
+<<<<<<< HEAD
+=======
     
     public ResultSet getAllMataKuliah() throws SQLException{
         ResultSet res = d.getData("SELECT * FROM guru JOIN pelajaran ON('id_guru')");
@@ -56,6 +62,7 @@ public class Guru_model {
     public void updateKompomen(String idKomp, String nama, String bobot, String ket) throws SQLException{
         d.query("UPDATE kompomen SET nama='"+nama+"', bobot='"+bobot+"', keterangan='"+ket+"' WHERE id_kompomen='"+idKomp+"' LIMIT 1");
     }
+<<<<<<< HEAD
     
     public ResultSet getAllSiswa() throws SQLException{
         ResultSet rs = d.getData("SELECT * FROM siswa");
@@ -78,4 +85,7 @@ public class Guru_model {
     public void updateNilai(String id_siswa, String id_kompomen, String nilai) throws SQLException{
         d.query("UPDATE nilai SET nilai ='"+nilai+"' WHERE id_siswa='"+id_siswa+"' AND id_kompomen='"+id_kompomen+"'");
     }
+=======
+>>>>>>> origin/master
+>>>>>>> origin/master
 }

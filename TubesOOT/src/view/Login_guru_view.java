@@ -38,10 +38,17 @@ public class Login_guru_view extends javax.swing.JFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+<<<<<<< HEAD
+        jTextField1 = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jPasswordField1 = new javax.swing.JPasswordField();
+=======
         txtUsername = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         txtPassword = new javax.swing.JPasswordField();
+>>>>>>> origin/master
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,8 +57,13 @@ public class Login_guru_view extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setText("Login Guru");
 
+<<<<<<< HEAD
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField1.setName("txtUsername"); // NOI18N
+=======
         txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtUsername.setName("txtUsername"); // NOI18N
+>>>>>>> origin/master
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel2.setText("Usename");
@@ -59,8 +71,13 @@ public class Login_guru_view extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jLabel3.setText("Password");
 
+<<<<<<< HEAD
+        jPasswordField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPasswordField1.setName("txtPassword"); // NOI18N
+=======
         txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPassword.setName("txtPassword"); // NOI18N
+>>>>>>> origin/master
 
         jButton1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jButton1.setText("Login");
@@ -74,6 +91,21 @@ public class Login_guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
+                        .addComponent(jLabel3)
+                        .addGap(25, 25, 25)
+                        .addComponent(jPasswordField1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1)))
+=======
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                         .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -87,6 +119,7 @@ public class Login_guru_view extends javax.swing.JFrame {
                         .addComponent(jLabel3)
                         .addGap(25, 25, 25)
                         .addComponent(txtPassword)))
+>>>>>>> origin/master
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -96,15 +129,26 @@ public class Login_guru_view extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+<<<<<<< HEAD
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> origin/master
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
+<<<<<<< HEAD
+                    .addComponent(jPasswordField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
+=======
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
                 .addContainerGap(12, Short.MAX_VALUE))
+>>>>>>> origin/master
         );
 
         pack();
@@ -153,11 +197,19 @@ public class Login_guru_view extends javax.swing.JFrame {
     }
 
     public JPasswordField getTxtPassword() {
+<<<<<<< HEAD
+        return jPasswordField1;
+    }
+
+    public JTextField getTxtUsername() {
+        return jTextField1;
+=======
         return txtPassword;
     }
 
     public JTextField getTxtUsername() {
         return txtUsername;
+>>>>>>> origin/master
     }
     
     
@@ -167,7 +219,12 @@ public class Login_guru_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+<<<<<<< HEAD
+    private javax.swing.JPasswordField jPasswordField1;
+    private javax.swing.JTextField jTextField1;
+=======
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUsername;
+>>>>>>> origin/master
     // End of variables declaration//GEN-END:variables
 }

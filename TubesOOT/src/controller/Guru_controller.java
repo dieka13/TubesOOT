@@ -7,11 +7,18 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+<<<<<<< HEAD
+import java.awt.event.WindowEvent;
+=======
+>>>>>>> origin/master
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+<<<<<<< HEAD
+import model.Guru_model;
+=======
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
@@ -21,21 +28,47 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
 import model.Guru_model;
 import view.Guru_view;
+>>>>>>> origin/master
 import view.Login_guru_view;
 
 /**
  *
  * @author dieka
  */
+<<<<<<< HEAD
 public class Guru_controller implements ActionListener, ListSelectionListener, ChangeListener{
     private Login_guru_view gui_login;
     private Guru_view gui_guru;
     private Guru_model md_guru;
     private String currentUserName, currentName, currentId, currentIdPel, currentSiswaId;
+=======
+<<<<<<< HEAD
+public class Guru_controller implements ActionListener{
+    private Login_guru_view gui_guru;
+    private Guru_model md_guru;
+    private String currentUser;
+=======
+public class Guru_controller implements ActionListener, ListSelectionListener{
+    private Login_guru_view gui_login;
+    private Guru_view gui_guru;
+    private Guru_model md_guru;
+    private String currentUserName, currentName, currentId, currentIdPel;
+>>>>>>> origin/master
+>>>>>>> origin/master
     private boolean isAdmin = false;
     
     public Guru_controller(){
         try {
+<<<<<<< HEAD
+            gui_guru = new Login_guru_view();
+            md_guru = new Guru_model();
+            gui_guru.addActionListener(this);
+            gui_guru.setVisible(true);
+            gui_guru.getRootPane().setDefaultButton(gui_guru.getButtonLogin());
+            gui_guru.getTxtUsername().grabFocus();
+        } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
+            JOptionPane.showMessageDialog(gui_guru, ex.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+=======
             gui_login = new Login_guru_view();
             md_guru = new Guru_model();
             gui_login.addActionListener(this);
@@ -45,12 +78,30 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
             
         } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             JOptionPane.showMessageDialog(gui_login, ex.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+>>>>>>> origin/master
             System.exit(1);
         }
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
+<<<<<<< HEAD
+        if(ae.getSource() == gui_guru.getButtonLogin()){
+            ResultSet res = null;
+            try {
+                res = md_guru.login(gui_guru.getTxtUsername().getText(), gui_guru.getTxtPassword().getText());
+                currentUser = res.getString("username");
+                isAdmin = res.getBoolean("admin");
+                gui_guru.dispose();
+            } catch (Exception ex) {
+                JOptionPane.showMessageDialog(gui_guru, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
+    public Login_guru_view getView() {
+        return gui_guru;
+=======
         if(ae.getSource() == gui_login.getButtonLogin()){
             ResultSet res = null;
             try {
@@ -178,19 +229,47 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
     
     public Login_guru_view getView() {
         return gui_login;
+>>>>>>> origin/master
     }
 
     public Guru_model getModel() {
         return md_guru;
     }
 
+<<<<<<< HEAD
+    public String getCurrentUser() {
+        return currentUser;
+=======
     public String getCurrentUserName() {
         return currentUserName;
+>>>>>>> origin/master
     }
 
     public boolean isAdmin() {
         return isAdmin;
     }
+<<<<<<< HEAD
+=======
+<<<<<<< HEAD
+    
+    
+=======
+
+    @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        if(lse.getSource() == gui_guru.getTblKompomen().getSelectionModel() && !lse.getValueIsAdjusting()){
+            if(gui_guru.getTabPaneGuru().getSelectedIndex() == 0){
+                JTable tbl = gui_guru.getTblKompomen();
+                if(tbl.getSelectedRow() != -1){
+                    gui_guru.getTxtEditNama().setText(tbl.getValueAt(tbl.getSelectedRow(), 1).toString());
+                    gui_guru.getTxtEditBobot().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
+                    gui_guru.getTxtAreaEditKeterangan().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
+                }
+                
+            }
+        }
+    }
+>>>>>>> origin/master
     
     public void refreshTabelKompomen() throws SQLException{
         DefaultTableModel tm = (DefaultTableModel) gui_guru.getTblKompomen().getModel();
@@ -240,4 +319,5 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
         gui_guru.getTxtTambahNama().setText("");
         gui_guru.getTxtAreaTambahKeterangan().setText("");
     }
+>>>>>>> origin/master
 }
