@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /TubesOOT/nbproject
 TubesOOT/build.xml
 <<<<<<< HEAD
@@ -7,3 +8,9 @@ TubesOOT/build.xml
 /TubesOOT/build/
 >>>>>>> origin/master
 /Tubes/dist/
+=======
+TubesOOT/build.xml
+*.mf
+/TubesOOT/build/
+/TubesOOT/dist/
+>>>>>>> origin/master
