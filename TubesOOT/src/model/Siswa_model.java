@@ -3,27 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-<<<<<<< HEAD
-package model;
 
-/**
- *
- * @author dieka
- */
-public class Siswa_model {
-    
-=======
-package Model;
+package model;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 /**
  *
- * @author Fatih
+ * @author dieka
  */
 public class Siswa_model {
-
     private Database d;
 
     public Siswa_model() throws SQLException, ClassNotFoundException, IllegalAccessException, InstantiationException {
@@ -52,5 +42,5 @@ public class Siswa_model {
         ResultSet rs = d.getData("");
         return rs = d.getData("");
     }
->>>>>>> origin/Siswa
+
 }
