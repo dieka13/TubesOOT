@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import model.Guru_model;
 import view.Login_guru_view;
@@ -70,6 +71,11 @@ public class Guru_controller implements ActionListener, ListSelectionListener{
 
     public boolean isAdmin() {
         return isAdmin;
+    }
+
+    @Override
+    public void valueChanged(ListSelectionEvent lse) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     
