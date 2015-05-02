@@ -73,7 +73,9 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 
                 if(isAdmin){
                     refreshTabelGuru();
+                    refreshTabelKelolaSiswa();
                 } else {
+                    gui_guru.getTabPaneGuru().remove(3);
                     gui_guru.getTabPaneGuru().remove(3);
                 }
                 
@@ -169,6 +171,32 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+            
+        } else if(ae.getSource() == gui_guru.getBtnSiswaTambah()){
+            try {
+                md_guru.insertSiswa(gui_guru.getTxtSiswaTambahNama().getText(), gui_guru.getTxtSiswaTambahKelas().getText(), gui_guru.getTxtSiswaTambahUsername().getText(), gui_guru.getTxtSiswaTambahPassword().getText());
+                refreshTabelKelolaSiswa();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(ae.getSource() == gui_guru.getBtnSiswaSimpan()){
+            try {
+                JTable tbl = gui_guru.getTblKelolaSiswa();
+                md_guru.updateSiswa(tbl.getValueAt(tbl.getSelectedRow(), 0).toString(), gui_guru.getTxtSiswaEditNama().getText(), gui_guru.getTxtSiswaEditKelas().getText(), gui_guru.getTxtSiswaEditUsername().getText(), gui_guru.getTxtSiswaEditPassword().getText());
+                refreshTabelKelolaSiswa();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
+        
+        } else if(ae.getSource() == gui_guru.getBtnSiswaHapus()){
+            try {
+                JTable tbl = gui_guru.getTblKelolaSiswa();
+                md_guru.deleteSiswa(tbl.getValueAt(tbl.getSelectedRow(), 0).toString());
+                refreshTabelKelolaSiswa();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -201,6 +229,15 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 gui_guru.getTxtGuruEditPelajaran().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
                 gui_guru.getChkGuruEditAdmin().setSelected((boolean)tbl.getValueAt(tbl.getSelectedRow(), 4));
             }
+            
+        } else if (lse.getSource() == gui_guru.getTblKelolaSiswa().getSelectionModel() && !lse.getValueIsAdjusting()){
+            
+            JTable tbl = gui_guru.getTblKelolaSiswa();
+            if(tbl.getSelectedRow() != -1){
+                gui_guru.getTxtSiswaEditNama().setText(tbl.getValueAt(tbl.getSelectedRow(), 1).toString());
+                gui_guru.getTxtSiswaEditUsername().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
+                gui_guru.getTxtSiswaEditKelas().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
+            }
         }
     }
     
@@ -222,10 +259,6 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 }
             }
             
-        } else if(ce.getSource() == gui_guru.getTabPaneGuru()){
-            if(gui_guru.getTabPaneGuru().getSelectedIndex() == 1){
-                
-            }
         }
     }
     
@@ -298,6 +331,20 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
         
         if(tm.getRowCount() > 0){
             gui_guru.getTblGuru().setRowSelectionInterval(0,0);
+        } 
+    }
+    
+    public void refreshTabelKelolaSiswa() throws SQLException{
+        DefaultTableModel tm = (DefaultTableModel) gui_guru.getTblKelolaSiswa().getModel();
+        tm.setNumRows(0);
+        
+        ResultSet rs_siswa = md_guru.getAllSiswa();
+        while(rs_siswa.next()){
+            tm.addRow(new Object[]{rs_siswa.getString("id_siswa"), rs_siswa.getString("nama"), rs_siswa.getString("kelas"), rs_siswa.getString("username")});
+        }
+        
+        if(tm.getRowCount() > 0){
+            gui_guru.getTblKelolaSiswa().setRowSelectionInterval(0,0);
         } 
     }
     

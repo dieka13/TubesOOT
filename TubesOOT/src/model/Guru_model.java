@@ -97,4 +97,20 @@ public class Guru_model {
     public void deleteGuru(String id_guru) throws SQLException{
         d.query("DELETE FROM guru WHERE id_guru='"+id_guru+"'");
     }
+    
+    public void insertSiswa(String nama, String kelas, String username, String pass) throws SQLException{
+        d.query("INSERT INTO siswa(nama, kelas, username, password) VALUES('"+nama+"','"+kelas+"','"+username+"','"+pass+"')");
+    }
+    
+    public void updateSiswa(String id_siswa, String nama, String kelas, String username, String pass) throws SQLException{
+        if(pass.equals("")){
+            d.query("UPDATE siswa SET nama='"+nama+"', kelas='"+kelas+"', username='"+username+"' WHERE id_siswa='"+id_siswa+"'");
+        } else {
+            d.query("UPDATE siswa SET nama='"+nama+"', kelas='"+kelas+"', username='"+username+"', password='"+pass+"' WHERE id_siswa='"+id_siswa+"'");
+        }        
+    }
+    
+    public void deleteSiswa(String id_siswa) throws SQLException{
+        d.query("DELETE FROM siswa WHERE id_siswa='"+id_siswa+"'");
+    }
 }
