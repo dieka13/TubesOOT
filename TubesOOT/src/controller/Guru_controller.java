@@ -9,6 +9,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ChangeEvent;
@@ -28,7 +30,7 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
     private Login_guru_view gui_login;
     private Guru_view gui_guru;
     private Guru_model md_guru;
-    private String currentUserName, currentName, currentId, currentIdPel, currentSiswaId;
+    private String currentUserName, currentName, currentId, currentSiswaId;
     private boolean isAdmin = false;
     
     public Guru_controller(){
@@ -55,7 +57,6 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 currentUserName = res.getString("username");
                 currentName = res.getString("nama");
                 currentId = res.getString("id_guru");
-                currentIdPel = res.getString("id_pelajaran");
                 isAdmin = res.getBoolean("admin");
                 gui_login.dispose();
                 
@@ -70,13 +71,20 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 refreshTabelKompomen();
                 refreshTabelSiswa();
                 
+                if(isAdmin){
+                    refreshTabelGuru();
+                } else {
+                    gui_guru.getTabPaneGuru().remove(3);
+                }
+                
+                
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
             
         } else if (ae.getSource() == gui_guru.getBtnKompomenTambah()) {
             try {
-                md_guru.insertKompomen(currentIdPel, gui_guru.getTxtTambahNama().getText(), gui_guru.getTxtTambahBobot().getText(), gui_guru.getTxtAreaTambahKeterangan().getText());
+                md_guru.insertKompomen(currentId, gui_guru.getTxtTambahNama().getText(), gui_guru.getTxtTambahBobot().getText(), gui_guru.getTxtAreaTambahKeterangan().getText());
                 refreshTabelKompomen();
                 clearTambahKompomen();
                 
@@ -128,6 +136,39 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                     JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
                 }
             }
+            
+        } else if(ae.getSource() == gui_guru.getBtnGuruTambah()){
+            
+            try {
+                md_guru.insertGuru(gui_guru.getTxtGuruTambahNama().getText(), gui_guru.getTxtGuruTambahUsername().getText(), gui_guru.getTxtGuruTambahPassword().getText(), gui_guru.getTxtGuruTambahPelajaran().getText(), gui_guru.getChkGuruTambahAdmin().isSelected()? "1":"0");
+                refreshTabelGuru();
+                clearTambahGuru();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(ae.getSource() == gui_guru.getBtnGuruSimpan()){
+            
+            try {
+                JTable tbl = gui_guru.getTblGuru();
+                md_guru.updateGuru(tbl.getValueAt(tbl.getSelectedRow(), 0).toString(), gui_guru.getTxtGuruEditNama().getText(), gui_guru.getTxtGuruEditUsername().getText(), gui_guru.getTxtGuruEditPassword().getText(), gui_guru.getTxtGuruEditPelajaran().getText(), gui_guru.getChkGuruEditAdmin().isSelected()? "1":"0");
+                refreshTabelGuru();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        } else if(ae.getSource() == gui_guru.getBtnGuruHapus()){
+            
+            try {
+                JTable tbl = gui_guru.getTblGuru();
+                md_guru.deleteGuru(tbl.getValueAt(tbl.getSelectedRow(), 0).toString());
+                refreshTabelGuru();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -150,6 +191,16 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
             if(tbl.getSelectedRow() != -1){
                 gui_guru.getTxtNilai().setText(tbl.getValueAt(tbl.getSelectedRow(), 2) == null ? "" : tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
             }
+            
+        } else if(lse.getSource() == gui_guru.getTblGuru().getSelectionModel() && !lse.getValueIsAdjusting()){
+            
+            JTable tbl = gui_guru.getTblGuru();
+            if(tbl.getSelectedRow() != -1){
+                gui_guru.getTxtGuruEditNama().setText(tbl.getValueAt(tbl.getSelectedRow(), 1).toString());
+                gui_guru.getTxtGuruEditUsername().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
+                gui_guru.getTxtGuruEditPelajaran().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
+                gui_guru.getChkGuruEditAdmin().setSelected((boolean)tbl.getValueAt(tbl.getSelectedRow(), 4));
+            }
         }
     }
     
@@ -169,6 +220,11 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 } catch (SQLException ex) {
                     JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
                 }
+            }
+            
+        } else if(ce.getSource() == gui_guru.getTabPaneGuru()){
+            if(gui_guru.getTabPaneGuru().getSelectedIndex() == 1){
+                
             }
         }
     }
@@ -225,16 +281,36 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
         tm.setNumRows(0);
         
         JTable tab = gui_guru.getTblSiswa();
-        System.out.println(currentIdPel);
-        ResultSet rs_nilai = md_guru.getNilai(currentIdPel, tab.getValueAt(tab.getSelectedRow(), 0).toString());
+        ResultSet rs_nilai = md_guru.getNilai(currentId, tab.getValueAt(tab.getSelectedRow(), 0).toString());
         while(rs_nilai.next()){
             tm.addRow(new Object[]{rs_nilai.getString("kompomen.id_kompomen"), rs_nilai.getString("kompomen.nama"), rs_nilai.getString("nilai")});
         }
+    }
+    
+    public void refreshTabelGuru() throws SQLException{
+        DefaultTableModel tm = (DefaultTableModel) gui_guru.getTblGuru().getModel();
+        tm.setNumRows(0);
+        
+        ResultSet rs = md_guru.getAllGuru();
+        while(rs.next()){
+            tm.addRow(new Object[]{rs.getString("id_guru"), rs.getString("guru.nama"), rs.getString("username"), rs.getString("pelajaran"), rs.getBoolean("admin")});
+        }
+        
+        if(tm.getRowCount() > 0){
+            gui_guru.getTblGuru().setRowSelectionInterval(0,0);
+        } 
     }
     
     public void clearTambahKompomen(){
         gui_guru.getTxtTambahBobot().setText("");
         gui_guru.getTxtTambahNama().setText("");
         gui_guru.getTxtAreaTambahKeterangan().setText("");
+    }
+    
+    public void clearTambahGuru(){
+        gui_guru.getTxtGuruTambahNama().setText("");
+        gui_guru.getTxtGuruTambahPassword().setText("");
+        gui_guru.getTxtGuruTambahUsername().setText("");
+        gui_guru.getTxtGuruTambahPelajaran().setText("");
     }
 }

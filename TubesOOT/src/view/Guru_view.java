@@ -7,6 +7,7 @@ package view;
 
 import controller.Guru_controller;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JTabbedPane;
 import javax.swing.JTable;
@@ -36,8 +37,6 @@ public class Guru_view extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelNama = new javax.swing.JPanel();
-        lblNamaGuru = new javax.swing.JLabel();
         TabPaneGuru = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -75,31 +74,43 @@ public class Guru_view extends javax.swing.JFrame {
         txtNilai = new javax.swing.JTextField();
         btnInput = new javax.swing.JButton();
         lblNamaSiswa = new javax.swing.JLabel();
+        jPanel10 = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        tblKomplain = new javax.swing.JTable();
+        jPanel11 = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jPanel7 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        tblGuru = new javax.swing.JTable();
+        tabPaneGuru = new javax.swing.JTabbedPane();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        txtGuruEditNama = new javax.swing.JTextField();
+        txtGuruEditUsername = new javax.swing.JTextField();
+        txtGuruEditPassword = new javax.swing.JTextField();
+        btnGuruSimpan = new javax.swing.JButton();
+        btnGuruHapus = new javax.swing.JButton();
+        jLabel14 = new javax.swing.JLabel();
+        txtGuruEditPelajaran = new javax.swing.JTextField();
+        chkGuruEditAdmin = new javax.swing.JCheckBox();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel11 = new javax.swing.JLabel();
+        txtGuruTambahNama = new javax.swing.JTextField();
+        jLabel12 = new javax.swing.JLabel();
+        txtGuruTambahUsername = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        txtGuruTambahPassword = new javax.swing.JTextField();
+        btnGuruTambah = new javax.swing.JButton();
+        jLabel15 = new javax.swing.JLabel();
+        txtGuruTambahPelajaran = new javax.swing.JTextField();
+        chkGuruTambahAdmin = new javax.swing.JCheckBox();
+        panelNama = new javax.swing.JPanel();
+        lblNamaGuru = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        panelNama.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        lblNamaGuru.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        lblNamaGuru.setText("Nama Guru");
-        lblNamaGuru.setName("lblNamaGuru"); // NOI18N
-
-        javax.swing.GroupLayout panelNamaLayout = new javax.swing.GroupLayout(panelNama);
-        panelNama.setLayout(panelNamaLayout);
-        panelNamaLayout.setHorizontalGroup(
-            panelNamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNamaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNamaGuru)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panelNamaLayout.setVerticalGroup(
-            panelNamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelNamaLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblNamaGuru)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
 
         TabPaneGuru.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         TabPaneGuru.setToolTipText("");
@@ -177,7 +188,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnKompomenHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnKompomenSimpan))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +258,7 @@ public class Guru_view extends javax.swing.JFrame {
                     .addComponent(txtTambahBobot))
                 .addGap(18, 18, 18)
                 .addComponent(btnKompomenTambah)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -305,7 +316,15 @@ public class Guru_view extends javax.swing.JFrame {
             new String [] {
                 "id siswa", "Nama", "Kelas"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tblSiswa);
         if (tblSiswa.getColumnModel().getColumnCount() > 0) {
             tblSiswa.getColumnModel().getColumn(0).setMinWidth(0);
@@ -323,7 +342,7 @@ public class Guru_view extends javax.swing.JFrame {
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnNilai)))
@@ -336,7 +355,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnNilai)
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
         );
 
         tabPaneNilai.addTab("Daftar Siswa", jPanel5);
@@ -383,7 +402,7 @@ public class Guru_view extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 474, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 513, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(16, 16, 16)
@@ -407,7 +426,7 @@ public class Guru_view extends javax.swing.JFrame {
                     .addComponent(btnInput)
                     .addComponent(txtNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addContainerGap(195, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
         );
 
         tabPaneNilai.addTab("Nilai", jPanel6);
@@ -425,11 +444,300 @@ public class Guru_view extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(tabPaneNilai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(tabPaneNilai)
+                .addContainerGap())
         );
 
         TabPaneGuru.addTab("Nilai", jPanel2);
+
+        tblKomplain.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Siswa", "Nama", "Kelas"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane7.setViewportView(tblKomplain);
+        if (tblKomplain.getColumnModel().getColumnCount() > 0) {
+            tblKomplain.getColumnModel().getColumn(0).setMinWidth(0);
+            tblKomplain.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detil Komplain", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
+        jPanel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jTextArea1.setEditable(false);
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane8.setViewportView(jTextArea1);
+
+        javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
+        jPanel11.setLayout(jPanel11Layout);
+        jPanel11Layout.setHorizontalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8)
+        );
+        jPanel11Layout.setVerticalGroup(
+            jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
+        );
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                    .addComponent(jPanel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPanel11, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(176, Short.MAX_VALUE))
+        );
+
+        TabPaneGuru.addTab("Komplain", jPanel10);
+
+        tblGuru.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Id Guru", "Nama", "Username", "Pelajaran", "admin"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane6.setViewportView(tblGuru);
+        if (tblGuru.getColumnModel().getColumnCount() > 0) {
+            tblGuru.getColumnModel().getColumn(0).setMinWidth(0);
+            tblGuru.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
+
+        tabPaneGuru.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel8.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel8.setText("Username");
+
+        jLabel9.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel9.setText("Password");
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel10.setText("Nama");
+
+        txtGuruEditNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtGuruEditUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        txtGuruEditPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btnGuruSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGuruSimpan.setText("Simpan");
+
+        btnGuruHapus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGuruHapus.setText("Hapus");
+
+        jLabel14.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel14.setText("Pelajaran");
+
+        txtGuruEditPelajaran.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        chkGuruEditAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkGuruEditAdmin.setText("Admin");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel14))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtGuruEditPelajaran, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(txtGuruEditNama)
+                    .addComponent(txtGuruEditUsername)
+                    .addComponent(txtGuruEditPassword))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGuruSimpan)
+                    .addComponent(btnGuruHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkGuruEditAdmin))
+                .addContainerGap(198, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtGuruEditNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkGuruEditAdmin))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(txtGuruEditUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtGuruEditPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnGuruHapus))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGuruEditPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addComponent(btnGuruSimpan))
+                .addContainerGap(15, Short.MAX_VALUE))
+        );
+
+        tabPaneGuru.addTab("Edit Guru", jPanel8);
+
+        jLabel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel11.setText("Nama");
+
+        txtGuruTambahNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel12.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel12.setText("Username");
+
+        txtGuruTambahUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        jLabel13.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel13.setText("Password");
+
+        txtGuruTambahPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        btnGuruTambah.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        btnGuruTambah.setText("Tambah");
+
+        jLabel15.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel15.setText("Pelajaran");
+
+        txtGuruTambahPelajaran.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+
+        chkGuruTambahAdmin.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        chkGuruTambahAdmin.setText("Admin");
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel11)
+                    .addComponent(jLabel12)
+                    .addComponent(jLabel13)
+                    .addComponent(jLabel15))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(txtGuruTambahPelajaran)
+                    .addComponent(txtGuruTambahNama)
+                    .addComponent(txtGuruTambahUsername)
+                    .addComponent(txtGuruTambahPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnGuruTambah)
+                    .addComponent(chkGuruTambahAdmin))
+                .addContainerGap(194, Short.MAX_VALUE))
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel9Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtGuruTambahNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(chkGuruTambahAdmin))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtGuruTambahUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(txtGuruTambahPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(txtGuruTambahPelajaran, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel15)
+                    .addComponent(btnGuruTambah))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        tabPaneGuru.addTab("Tambah Guru", jPanel9);
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(tabPaneGuru))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(tabPaneGuru, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        TabPaneGuru.addTab("Daftar Guru", jPanel7);
+
+        panelNama.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        lblNamaGuru.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lblNamaGuru.setText("Nama Guru");
+        lblNamaGuru.setName("lblNamaGuru"); // NOI18N
+
+        javax.swing.GroupLayout panelNamaLayout = new javax.swing.GroupLayout(panelNama);
+        panelNama.setLayout(panelNamaLayout);
+        panelNamaLayout.setHorizontalGroup(
+            panelNamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelNamaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblNamaGuru)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        panelNamaLayout.setVerticalGroup(
+            panelNamaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelNamaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblNamaGuru)
+                .addContainerGap())
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -448,7 +756,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(TabPaneGuru, javax.swing.GroupLayout.PREFERRED_SIZE, 440, Short.MAX_VALUE)
+                .addComponent(TabPaneGuru, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -492,34 +800,59 @@ public class Guru_view extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTabbedPane TabPaneGuru;
+    private javax.swing.JButton btnGuruHapus;
+    private javax.swing.JButton btnGuruSimpan;
+    private javax.swing.JButton btnGuruTambah;
     private javax.swing.JButton btnInput;
     private javax.swing.JButton btnKompomenHapus;
     private javax.swing.JButton btnKompomenSimpan;
     private javax.swing.JButton btnKompomenTambah;
     private javax.swing.JButton btnNilai;
+    private javax.swing.JCheckBox chkGuruEditAdmin;
+    private javax.swing.JCheckBox chkGuruTambahAdmin;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNamaGuru;
     private javax.swing.JLabel lblNamaSiswa;
     private javax.swing.JPanel panelNama;
+    private javax.swing.JTabbedPane tabPaneGuru;
     private javax.swing.JTabbedPane tabPaneKompomen;
     private javax.swing.JTabbedPane tabPaneNilai;
+    private javax.swing.JTable tblGuru;
+    private javax.swing.JTable tblKomplain;
     private javax.swing.JTable tblKompomen;
     private javax.swing.JTable tblNilai;
     private javax.swing.JTable tblSiswa;
@@ -527,6 +860,14 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JTextArea txtAreaTambahKeterangan;
     private javax.swing.JTextField txtEditBobot;
     private javax.swing.JTextField txtEditNama;
+    private javax.swing.JTextField txtGuruEditNama;
+    private javax.swing.JTextField txtGuruEditPassword;
+    private javax.swing.JTextField txtGuruEditPelajaran;
+    private javax.swing.JTextField txtGuruEditUsername;
+    private javax.swing.JTextField txtGuruTambahNama;
+    private javax.swing.JTextField txtGuruTambahPassword;
+    private javax.swing.JTextField txtGuruTambahPelajaran;
+    private javax.swing.JTextField txtGuruTambahUsername;
     private javax.swing.JTextField txtNilai;
     private javax.swing.JTextField txtTambahBobot;
     private javax.swing.JTextField txtTambahNama;
@@ -538,15 +879,20 @@ public class Guru_view extends javax.swing.JFrame {
         btnKompomenTambah.addActionListener(gc);
         btnInput.addActionListener(gc);
         btnNilai.addActionListener(gc);
+        btnGuruSimpan.addActionListener(gc);
+        btnGuruHapus.addActionListener(gc);
+        btnGuruTambah.addActionListener(gc);
     }
     
     public void addListSelectionListener(Guru_controller gc){
         tblKompomen.getSelectionModel().addListSelectionListener(gc);
         tblNilai.getSelectionModel().addListSelectionListener(gc);
+        tblGuru.getSelectionModel().addListSelectionListener(gc);
     }
     
     public void addChangeListener(Guru_controller gc){
         tabPaneNilai.addChangeListener(gc);
+        tabPaneGuru.addChangeListener(gc);
     }
 
     public JLabel getLblNamaGuru() {
@@ -627,6 +973,66 @@ public class Guru_view extends javax.swing.JFrame {
 
     public JLabel getLblNamaSiswa() {
         return lblNamaSiswa;
+    }
+
+    public JButton getBtnGuruHapus() {
+        return btnGuruHapus;
+    }
+
+    public JButton getBtnGuruSimpan() {
+        return btnGuruSimpan;
+    }
+
+    public JButton getBtnGuruTambah() {
+        return btnGuruTambah;
+    }
+
+    public JTable getTblGuru() {
+        return tblGuru;
+    }
+
+    public JTable getTblKomplain() {
+        return tblKomplain;
+    }
+
+    public JTextField getTxtGuruTambahNama() {
+        return txtGuruTambahNama;
+    }
+
+    public JTextField getTxtGuruTambahPassword() {
+        return txtGuruTambahPassword;
+    }
+
+    public JTextField getTxtGuruTambahUsername() {
+        return txtGuruTambahUsername;
+    }
+
+    public JTextField getTxtGuruEditNama() {
+        return txtGuruEditNama;
+    }
+
+    public JTextField getTxtGuruEditPassword() {
+        return txtGuruEditPassword;
+    }
+
+    public JTextField getTxtGuruEditUsername() {
+        return txtGuruEditUsername;
+    }
+
+    public JTextField getTxtGuruEditPelajaran() {
+        return txtGuruEditPelajaran;
+    }
+
+    public JTextField getTxtGuruTambahPelajaran() {
+        return txtGuruTambahPelajaran;
+    }
+
+    public JCheckBox getChkGuruEditAdmin() {
+        return chkGuruEditAdmin;
+    }
+
+    public JCheckBox getChkGuruTambahAdmin() {
+        return chkGuruTambahAdmin;
     }
 
     

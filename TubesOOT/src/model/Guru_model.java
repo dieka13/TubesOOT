@@ -20,7 +20,7 @@ public class Guru_model {
     }
     
     public ResultSet login(String username, String password) throws SQLException, Exception{
-        ResultSet l = d.getData("SELECT * FROM guru JOIN pelajaran USING(id_guru) WHERE username='"+username+"' AND password = '"+password+"' LIMIT 1");
+        ResultSet l = d.getData("SELECT * FROM guru WHERE username='"+username+"' AND password = '"+password+"' LIMIT 1");
         if(!l.next()){
             throw new Exception("Login gagal, periksa kembali username dan password anda");
         } else {
@@ -29,21 +29,18 @@ public class Guru_model {
     }
     
     public ResultSet getAllMataKuliah() throws SQLException{
-        ResultSet res = d.getData("SELECT * FROM guru JOIN pelajaran ON('id_guru')");
+        ResultSet res = d.getData("SELECT * FROM guru");
         return res;
     }
     
     public ResultSet getAllKompomen(String id_guru) throws SQLException{
-        ResultSet res = d.getData("SELECT * FROM kompomen_pelajaran JOIN kompomen USING(id_kompomen) JOIN pelajaran USING(id_pelajaran) WHERE id_guru ='"+id_guru+"'");
+        ResultSet res = d.getData("SELECT * FROM kompomen JOIN guru USING(id_guru) WHERE id_guru ='"+id_guru+"'");
         return res;
     }
     
-    public void insertKompomen(String idPel, String nama, String bobot, String ket) throws SQLException{
+    public void insertKompomen(String idGuru, String nama, String bobot, String ket) throws SQLException{
         try{
-            d.query("INSERT INTO kompomen(nama, bobot, keterangan) VALUES('"+nama+"','"+bobot+"','"+ket+"')");
-            ResultSet rs = d.getStatement().getGeneratedKeys();
-            rs.next();
-            d.query("INSERT INTO kompomen_pelajaran VALUES('"+idPel+"','"+rs.getInt(1)+"')");
+            d.query("INSERT INTO kompomen(nama, bobot, keterangan, id_guru) VALUES('"+nama+"','"+bobot+"','"+ket+"', '"+idGuru+"')");
         } catch(SQLException e) {
             throw e;
         }
@@ -62,12 +59,12 @@ public class Guru_model {
         return rs;
     }
     
-    public ResultSet getNilai(String id_pelajaran, String id_siswa) throws SQLException{
+    public ResultSet getNilai(String id_guru, String id_siswa) throws SQLException{
         ResultSet rs = d.getData("SELECT * FROM kompomen CROSS JOIN siswa "
-                + "LEFT JOIN nilai USING(id_siswa, id_kompomen)"
-                + "JOIN kompomen_pelajaran USING(id_kompomen)"
-                + " WHERE id_siswa='"+id_siswa+"'"
-                + " AND id_pelajaran='"+id_pelajaran+"'");
+                + "LEFT JOIN nilai USING(id_siswa)"
+                + " WHERE id_siswa='"+id_siswa+"' "
+                + " AND id_guru ='"+id_guru+"'");
+                
         return rs;
     }
     
@@ -77,5 +74,27 @@ public class Guru_model {
     
     public void updateNilai(String id_siswa, String id_kompomen, String nilai) throws SQLException{
         d.query("UPDATE nilai SET nilai ='"+nilai+"' WHERE id_siswa='"+id_siswa+"' AND id_kompomen='"+id_kompomen+"'");
+    }
+    
+    public ResultSet getAllGuru() throws SQLException{
+        ResultSet rs = d.getData("SELECT * FROM guru");
+        return rs;
+    }
+    
+    public void insertGuru(String nama, String username, String password, String pelajaran, String admin) throws SQLException{
+        d.query("INSERT INTO guru(nama, username, password, pelajaran, admin) VALUES('"+nama+"','"+username+"','"+password+"','"+pelajaran+"', '"+admin+"')");
+    }
+    
+    public void updateGuru(String id_guru, String nama, String username, String password, String pelajaran, String admin) throws SQLException{
+        if(password.equals("")){
+            d.query("UPDATE guru SET nama='"+nama+"', username='"+username+"', pelajaran='"+pelajaran+"', admin='"+admin+"' WHERE id_guru='"+id_guru+"'");
+        } else {
+            d.query("UPDATE guru SET nama='"+nama+"', username='"+username+"', password='"+password+"', pelajaran='"+pelajaran+"', admin='"+admin+"' WHERE id_guru='"+id_guru+"' ");
+        }
+        
+    }
+    
+    public void deleteGuru(String id_guru) throws SQLException{
+        d.query("DELETE FROM guru WHERE id_guru='"+id_guru+"'");
     }
 }
