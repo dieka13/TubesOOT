@@ -6,6 +6,7 @@ TubesOOT/build.xml
 =======
 *.mf
 /TubesOOT/build/
+<<<<<<< HEAD
 >>>>>>> origin/master
 /Tubes/dist/
 =======
@@ -14,3 +15,7 @@ TubesOOT/build.xml
 /TubesOOT/build/
 /TubesOOT/dist/
 >>>>>>> origin/master
+=======
+/TubesOOT/dist/
+/TubesOOT/nbproject/private/
+>>>>>>> origin/guru
