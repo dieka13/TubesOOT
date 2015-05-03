@@ -107,31 +107,6 @@ public class Guru_view extends javax.swing.JFrame {
         jLabel15 = new javax.swing.JLabel();
         txtGuruTambahPelajaran = new javax.swing.JTextField();
         chkGuruTambahAdmin = new javax.swing.JCheckBox();
-        jPanel12 = new javax.swing.JPanel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        tblKelolaSiswa = new javax.swing.JTable();
-        tabPaneGuru1 = new javax.swing.JTabbedPane();
-        jPanel13 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        txtSiswaEditNama = new javax.swing.JTextField();
-        txtSiswaEditUsername = new javax.swing.JTextField();
-        txtSiswaEditPassword = new javax.swing.JTextField();
-        btnSiswaSimpan = new javax.swing.JButton();
-        btnSiswaHapus = new javax.swing.JButton();
-        jLabel19 = new javax.swing.JLabel();
-        txtSiswaEditKelas = new javax.swing.JTextField();
-        jPanel14 = new javax.swing.JPanel();
-        jLabel20 = new javax.swing.JLabel();
-        txtSiswaTambahNama = new javax.swing.JTextField();
-        jLabel21 = new javax.swing.JLabel();
-        txtSiswaTambahUsername = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        txtSiswaTambahPassword = new javax.swing.JTextField();
-        btnSiswaTambah = new javax.swing.JButton();
-        jLabel23 = new javax.swing.JLabel();
-        txtSiswaTambahKelas = new javax.swing.JTextField();
         panelNama = new javax.swing.JPanel();
         lblNamaGuru = new javax.swing.JLabel();
 
@@ -473,7 +448,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        TabPaneGuru.addTab("Kelola Nilai", jPanel2);
+        TabPaneGuru.addTab("Nilai", jPanel2);
 
         tblKomplain.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -735,208 +710,11 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(tabPaneGuru)
+                .addComponent(tabPaneGuru, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        TabPaneGuru.addTab("Kelola Guru", jPanel7);
-
-        tblKelolaSiswa.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        tblKelolaSiswa.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "id siswa", "Nama", "Kelas", "username"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jScrollPane9.setViewportView(tblKelolaSiswa);
-        if (tblKelolaSiswa.getColumnModel().getColumnCount() > 0) {
-            tblKelolaSiswa.getColumnModel().getColumn(0).setMinWidth(0);
-            tblKelolaSiswa.getColumnModel().getColumn(0).setPreferredWidth(0);
-            tblKelolaSiswa.getColumnModel().getColumn(0).setMaxWidth(0);
-        }
-
-        tabPaneGuru1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel16.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel16.setText("Username");
-
-        jLabel17.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel17.setText("Password");
-
-        jLabel18.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel18.setText("Nama");
-
-        txtSiswaEditNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtSiswaEditUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        txtSiswaEditPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        btnSiswaSimpan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSiswaSimpan.setText("Simpan");
-
-        btnSiswaHapus.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSiswaHapus.setText("Hapus");
-
-        jLabel19.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel19.setText("Kelas");
-
-        txtSiswaEditKelas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
-        jPanel13.setLayout(jPanel13Layout);
-        jPanel13Layout.setHorizontalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel16)
-                    .addComponent(jLabel17)
-                    .addComponent(jLabel19))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSiswaEditNama, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(txtSiswaEditUsername)
-                    .addComponent(txtSiswaEditPassword)
-                    .addComponent(txtSiswaEditKelas))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnSiswaSimpan)
-                    .addComponent(btnSiswaHapus, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(198, Short.MAX_VALUE))
-        );
-        jPanel13Layout.setVerticalGroup(
-            jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel13Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel18)
-                    .addComponent(txtSiswaEditNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSiswaEditKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel19))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addComponent(btnSiswaHapus)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnSiswaSimpan))
-                    .addGroup(jPanel13Layout.createSequentialGroup()
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel16)
-                            .addComponent(txtSiswaEditUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel13Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel17)
-                            .addComponent(txtSiswaEditPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(18, Short.MAX_VALUE))
-        );
-
-        tabPaneGuru1.addTab("Edit Siswa", jPanel13);
-
-        jLabel20.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel20.setText("Nama");
-
-        txtSiswaTambahNama.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel21.setText("Username");
-
-        txtSiswaTambahUsername.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        jLabel22.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel22.setText("Password");
-
-        txtSiswaTambahPassword.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        btnSiswaTambah.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        btnSiswaTambah.setText("Tambah");
-
-        jLabel23.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel23.setText("Kelas");
-
-        txtSiswaTambahKelas.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-
-        javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
-        jPanel14.setLayout(jPanel14Layout);
-        jPanel14Layout.setHorizontalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addComponent(jLabel21)
-                    .addComponent(jLabel22)
-                    .addComponent(jLabel23))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSiswaTambahNama)
-                    .addComponent(txtSiswaTambahUsername)
-                    .addComponent(txtSiswaTambahPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                    .addComponent(txtSiswaTambahKelas))
-                .addGap(18, 18, 18)
-                .addComponent(btnSiswaTambah)
-                .addContainerGap(194, Short.MAX_VALUE))
-        );
-        jPanel14Layout.setVerticalGroup(
-            jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel14Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel20)
-                    .addComponent(txtSiswaTambahNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtSiswaTambahKelas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel23))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel21)
-                    .addComponent(txtSiswaTambahUsername, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel22)
-                    .addComponent(txtSiswaTambahPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnSiswaTambah))
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
-
-        tabPaneGuru1.addTab("Tambah Siswa", jPanel14);
-
-        javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
-        jPanel12.setLayout(jPanel12Layout);
-        jPanel12Layout.setHorizontalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9)
-                    .addComponent(tabPaneGuru1))
-                .addContainerGap())
-        );
-        jPanel12Layout.setVerticalGroup(
-            jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel12Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62)
-                .addComponent(tabPaneGuru1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        TabPaneGuru.addTab("Kelola Siswa", jPanel12);
+        TabPaneGuru.addTab("Daftar Guru", jPanel7);
 
         panelNama.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -978,7 +756,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(panelNama, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(TabPaneGuru)
+                .addComponent(TabPaneGuru, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1030,9 +808,6 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JButton btnKompomenSimpan;
     private javax.swing.JButton btnKompomenTambah;
     private javax.swing.JButton btnNilai;
-    private javax.swing.JButton btnSiswaHapus;
-    private javax.swing.JButton btnSiswaSimpan;
-    private javax.swing.JButton btnSiswaTambah;
     private javax.swing.JCheckBox chkGuruEditAdmin;
     private javax.swing.JCheckBox chkGuruTambahAdmin;
     private javax.swing.JLabel jLabel1;
@@ -1042,15 +817,7 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
-    private javax.swing.JLabel jLabel22;
-    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1061,9 +828,6 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1080,17 +844,14 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNamaGuru;
     private javax.swing.JLabel lblNamaSiswa;
     private javax.swing.JPanel panelNama;
     private javax.swing.JTabbedPane tabPaneGuru;
-    private javax.swing.JTabbedPane tabPaneGuru1;
     private javax.swing.JTabbedPane tabPaneKompomen;
     private javax.swing.JTabbedPane tabPaneNilai;
     private javax.swing.JTable tblGuru;
-    private javax.swing.JTable tblKelolaSiswa;
     private javax.swing.JTable tblKomplain;
     private javax.swing.JTable tblKompomen;
     private javax.swing.JTable tblNilai;
@@ -1108,14 +869,6 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JTextField txtGuruTambahPelajaran;
     private javax.swing.JTextField txtGuruTambahUsername;
     private javax.swing.JTextField txtNilai;
-    private javax.swing.JTextField txtSiswaEditKelas;
-    private javax.swing.JTextField txtSiswaEditNama;
-    private javax.swing.JTextField txtSiswaEditPassword;
-    private javax.swing.JTextField txtSiswaEditUsername;
-    private javax.swing.JTextField txtSiswaTambahKelas;
-    private javax.swing.JTextField txtSiswaTambahNama;
-    private javax.swing.JTextField txtSiswaTambahPassword;
-    private javax.swing.JTextField txtSiswaTambahUsername;
     private javax.swing.JTextField txtTambahBobot;
     private javax.swing.JTextField txtTambahNama;
     // End of variables declaration//GEN-END:variables
@@ -1124,24 +877,17 @@ public class Guru_view extends javax.swing.JFrame {
         btnKompomenHapus.addActionListener(gc);
         btnKompomenSimpan.addActionListener(gc);
         btnKompomenTambah.addActionListener(gc);
-        
         btnInput.addActionListener(gc);
         btnNilai.addActionListener(gc);
-        
         btnGuruSimpan.addActionListener(gc);
         btnGuruHapus.addActionListener(gc);
         btnGuruTambah.addActionListener(gc);
-        
-        btnSiswaSimpan.addActionListener(gc);
-        btnSiswaHapus.addActionListener(gc);
-        btnSiswaTambah.addActionListener(gc);
     }
     
     public void addListSelectionListener(Guru_controller gc){
         tblKompomen.getSelectionModel().addListSelectionListener(gc);
         tblNilai.getSelectionModel().addListSelectionListener(gc);
         tblGuru.getSelectionModel().addListSelectionListener(gc);
-        tblKelolaSiswa.getSelectionModel().addListSelectionListener(gc);
     }
     
     public void addChangeListener(Guru_controller gc){
@@ -1287,70 +1033,6 @@ public class Guru_view extends javax.swing.JFrame {
 
     public JCheckBox getChkGuruTambahAdmin() {
         return chkGuruTambahAdmin;
-    }
-
-    public JButton getBtnSiswaHapus() {
-        return btnSiswaHapus;
-    }
-
-    public JButton getBtnSiswaSimpan() {
-        return btnSiswaSimpan;
-    }
-
-    public JButton getBtnSiswaTambah() {
-        return btnSiswaTambah;
-    }
-
-    public JTextField getTxtGuruEditNama1() {
-        return txtSiswaEditNama;
-    }
-
-    public JTextField getTxtGuruEditPassword1() {
-        return txtSiswaEditPassword;
-    }
-
-    public JTextField getTxtGuruEditPelajaran1() {
-        return txtSiswaEditKelas;
-    }
-
-    public JTextField getTxtGuruEditUsername1() {
-        return txtSiswaEditUsername;
-    }
-
-    public JTextField getTxtSiswaTambahKelas() {
-        return txtSiswaTambahKelas;
-    }
-
-    public JTextField getTxtSiswaTambahNama() {
-        return txtSiswaTambahNama;
-    }
-
-    public JTextField getTxtSiswaTambahPassword() {
-        return txtSiswaTambahPassword;
-    }
-
-    public JTextField getTxtSiswaTambahUsername() {
-        return txtSiswaTambahUsername;
-    }
-
-    public JTable getTblKelolaSiswa() {
-        return tblKelolaSiswa;
-    }
-
-    public JTextField getTxtSiswaEditNama() {
-        return txtSiswaEditNama;
-    }
-
-    public JTextField getTxtSiswaEditPassword() {
-        return txtSiswaEditPassword;
-    }
-
-    public JTextField getTxtSiswaEditKelas() {
-        return txtSiswaEditKelas;
-    }
-
-    public JTextField getTxtSiswaEditUsername() {
-        return txtSiswaEditUsername;
     }
 
     
