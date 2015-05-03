@@ -5,7 +5,7 @@
  */
 package Controller;
 
-import Model.Siswa_model;
+import model.Siswa_model;
 import View.GUI_Siswa;
 import View.Login;
 import java.awt.event.ActionEvent;
