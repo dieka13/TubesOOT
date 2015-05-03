@@ -12,7 +12,7 @@ import java.sql.SQLException;
  *
  * @author Fatih
  */
-public class Siswa_model {
+public class Siswa_model{
 
     private Database d;
 
@@ -29,17 +29,15 @@ public class Siswa_model {
         }
     }
 
-    public ResultSet getAll(String id_siswa) throws SQLException {
-        ResultSet rs = d.getData("SELECT * FROM nilai JOIN kompomen USING(id_kompomen) JOIN kompomen_pelajaran USING(id_kompomen) JOIN pelajaran USING(id_pelajaran)JOIN guru USING(id_guru) WHERE id_siswa ='" + id_siswa + "'");
+    public ResultSet getKomponenPelajaran(String id_siswa) throws SQLException {
+        ResultSet rs = d.getData("SELECT guru.id_guru, kompomen.nama, kompomen.bobot FROM kompomen join guru using(id_guru)join nilai using(id_kompomen) where id_siswa ="+id_siswa);
         return rs;
     }
-
-    public ResultSet getKomponenPelajaran(String id_pelajaran) throws SQLException {
-        ResultSet rs = d.getData("SELECT * FROM kompomen JOIN kompomen_pelajaran USING(id_kompomen) WHERE id_pelajaran ='"+id_pelajaran+"'");
+    public ResultSet loadNilai(String id_siswa) throws SQLException{
+        ResultSet rs = d.getData("SELECT guru.nama,guru.pelajaran,nilai.nilai FROM nilai join kompomen using(id_kompomen)join guru using(id_guru) where id_siswa ="+id_siswa);
         return rs;
     }
-    public ResultSet insertKomplain() throws SQLException{
-        ResultSet rs = d.getData("");
-        return rs = d.getData("");
+    public void insertKomplain(String id_guru, String id_siswa, String pesan) throws SQLException{
+        d.query("INSERT INTO `komplain`(`id_guru`, `id_siswa`, `pesan`) VALUES ('"+id_guru+"','"+id_siswa+"','"+pesan+"')");
     }
 }
