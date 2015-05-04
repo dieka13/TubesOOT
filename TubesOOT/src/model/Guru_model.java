@@ -60,10 +60,7 @@ public class Guru_model {
     }
     
     public ResultSet getNilai(String id_guru, String id_siswa) throws SQLException{
-        ResultSet rs = d.getData("SELECT * FROM kompomen CROSS JOIN siswa "
-                + "LEFT JOIN nilai USING(id_siswa)"
-                + " WHERE id_siswa='"+id_siswa+"' "
-                + " AND id_guru ='"+id_guru+"'");
+        ResultSet rs = d.getData("SELECT * FROM nilai RIGHT JOIN kompomen USING(id_kompomen) WHERE (id_siswa='"+id_siswa+"' OR id_siswa IS NULL) AND id_guru='"+id_guru+"'");
                 
         return rs;
     }
@@ -112,5 +109,10 @@ public class Guru_model {
     
     public void deleteSiswa(String id_siswa) throws SQLException{
         d.query("DELETE FROM siswa WHERE id_siswa='"+id_siswa+"'");
+    }
+    
+    public ResultSet getAllKomplain(String id_guru) throws SQLException{
+        ResultSet rs = d.getData("SELECT * FROM komplain JOIN siswa USING(id_siswa) WHERE id_guru='"+id_guru+"'");
+        return rs;
     }
 }

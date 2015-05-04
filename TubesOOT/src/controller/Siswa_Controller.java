@@ -12,8 +12,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.ListSelectionEvent;
@@ -39,6 +37,7 @@ public class Siswa_Controller implements ActionListener, ListSelectionListener {
             gui_login.setVisible(true);
             gui_login.getRootPane().setDefaultButton(gui_login.getBtnLogin());
             gui_login.getUser().grabFocus();
+            
         } catch (SQLException | ClassNotFoundException | IllegalAccessException | InstantiationException ex) {
             JOptionPane.showMessageDialog(gui_login, ex.getMessage(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             System.exit(1);
@@ -48,13 +47,40 @@ public class Siswa_Controller implements ActionListener, ListSelectionListener {
     public void loadTabelNilai() throws SQLException {
         DefaultTableModel t = (DefaultTableModel) gui_siswa.getTabelNilai().getModel();
         t.setNumRows(0);
-        ResultSet rs = md_siswa.loadNilai(currentIdSiswa);
+        
+        ResultSet rs = md_siswa.loadNilai();
+        while(rs.next()){
+            t.addRow(new Object[]{rs.getString("id_guru"), rs.getString("nama"), rs.getString("pelajaran")});
+        }
+        
     }
-    public void loadKompomen() throws SQLException {
+    public void loadKompomen(String id_guru, String id_siswa) throws SQLException {
         DefaultTableModel t = (DefaultTableModel) gui_siswa.getTableDetilNilai().getModel();
         t.setNumRows(0);
-        ResultSet rs = md_siswa.getKomponenPelajaran(currentIdSiswa);
-        currentidGuru = rs.getString("id_guru");
+                
+        ResultSet rs = md_siswa.getKomponenPelajaran(id_guru, id_siswa);
+        while(rs.next()){
+            t.addRow(new Object[]{rs.getString("id_kompomen"), rs.getString("nama"), rs.getString("bobot"), rs.getString("nilai")});
+        }
+        
+        if(t.getRowCount() > 0){
+            gui_siswa.getTableDetilNilai().setRowSelectionInterval(0, 0);
+            
+            int total_bobot=0;
+            double total = 0;
+            for (int i = 0; i < t.getRowCount(); i++) {
+                total_bobot += t.getValueAt(i, 2) != null ? Integer.valueOf(t.getValueAt(i, 2).toString()) : 0;
+            }
+
+            for (int i = 0; i < t.getRowCount(); i++) {
+                double bobot = t.getValueAt(i, 2) != null ? Double.valueOf(t.getValueAt(i, 2).toString()) : 0;
+                double nilai = t.getValueAt(i, 3) != null ? Double.valueOf(t.getValueAt(i, 3).toString()) : 0;
+                total += nilai*(bobot/total_bobot);
+            }
+            t.addRow(new Object[]{null,"TOTAL NILAI", null,total});
+        }
+        
+        
     }
 
     @Override
@@ -71,6 +97,8 @@ public class Siswa_Controller implements ActionListener, ListSelectionListener {
                 gui_siswa.addActionListener(this);
                 gui_siswa.getLblNama().setText(gui_siswa.getLblNama().getText() + currentName + " (" + currentUserName + ") ");
                 gui_siswa.setVisible(true);
+                
+               gui_siswa.addListSelectionListener(this);
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
@@ -81,13 +109,15 @@ public class Siswa_Controller implements ActionListener, ListSelectionListener {
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+            
         } else if (ae.getSource() == gui_siswa.getBtnKomplain()) {
             try {
                 md_siswa.insertKomplain(currentidGuru, currentIdSiswa, gui_siswa.getTxtKomplain().getText());
-                JOptionPane.showConfirmDialog(gui_login, ae);
+                gui_siswa.getTxtKomplain().setText("");
+                JOptionPane.showMessageDialog(gui_login, "Komplain telah berhasil dikirim", "Komplain Dikirim", JOptionPane.INFORMATION_MESSAGE);
             } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(gui_login, ex);
-            }   
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
 
@@ -95,11 +125,15 @@ public class Siswa_Controller implements ActionListener, ListSelectionListener {
     public void valueChanged(ListSelectionEvent lse) {
         JTable tbl = gui_siswa.getTabelNilai();
         if(tbl.getSelectedRow()!=-1){
+            
             try {
-                loadKompomen();
+                currentidGuru = (String) tbl.getValueAt(tbl.getSelectedRow(), 0);
+                loadKompomen(currentidGuru, currentIdSiswa);
+                
             } catch (SQLException ex) {
-                System.out.println("Kesalahan di value changed");
+                JOptionPane.showMessageDialog(gui_login, ex.toString(), "Terjadi Kesalahan", JOptionPane.ERROR_MESSAGE);
             }
+            
         }
     }
 }

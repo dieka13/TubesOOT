@@ -55,16 +55,25 @@ public class GUI_Siswa extends javax.swing.JFrame {
 
         tabelNilai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "Nama", "Pelajaran", "Nilai"
+                "Id Pelajaran", "Nama", "Pelajaran"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(tabelNilai);
+        if (tabelNilai.getColumnModel().getColumnCount() > 0) {
+            tabelNilai.getColumnModel().getColumn(0).setMinWidth(0);
+            tabelNilai.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         btnview.setText("Lihat Nilai");
 
@@ -117,16 +126,25 @@ public class GUI_Siswa extends javax.swing.JFrame {
 
         tableDetilNilai.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
-                "id_guru", "nama", "bobot"
+                "Id Kompomen", "Nama", "Bobot", "Nilai"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane2.setViewportView(tableDetilNilai);
+        if (tableDetilNilai.getColumnModel().getColumnCount() > 0) {
+            tableDetilNilai.getColumnModel().getColumn(0).setMinWidth(0);
+            tableDetilNilai.getColumnModel().getColumn(0).setMaxWidth(0);
+        }
 
         btnKomplain.setText("Komplain");
 

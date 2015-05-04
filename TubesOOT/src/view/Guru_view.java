@@ -79,7 +79,7 @@ public class Guru_view extends javax.swing.JFrame {
         tblKomplain = new javax.swing.JTable();
         jPanel11 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtAreaKomplain = new javax.swing.JTextArea();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
         tblGuru = new javax.swing.JTable();
@@ -480,7 +480,7 @@ public class Guru_view extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Id Siswa", "Nama", "Kelas"
+                "Nama", "Kelas", "Pesan"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -493,17 +493,17 @@ public class Guru_view extends javax.swing.JFrame {
         });
         jScrollPane7.setViewportView(tblKomplain);
         if (tblKomplain.getColumnModel().getColumnCount() > 0) {
-            tblKomplain.getColumnModel().getColumn(0).setMinWidth(0);
-            tblKomplain.getColumnModel().getColumn(0).setMaxWidth(0);
+            tblKomplain.getColumnModel().getColumn(2).setMinWidth(0);
+            tblKomplain.getColumnModel().getColumn(2).setMaxWidth(0);
         }
 
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Detil Komplain", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 0, 14))); // NOI18N
         jPanel11.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane8.setViewportView(jTextArea1);
+        txtAreaKomplain.setEditable(false);
+        txtAreaKomplain.setColumns(20);
+        txtAreaKomplain.setRows(5);
+        jScrollPane8.setViewportView(txtAreaKomplain);
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
         jPanel11.setLayout(jPanel11Layout);
@@ -932,7 +932,7 @@ public class Guru_view extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane9, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62)
-                .addComponent(tabPaneGuru1, javax.swing.GroupLayout.DEFAULT_SIZE, 219, Short.MAX_VALUE)
+                .addComponent(tabPaneGuru1)
                 .addContainerGap())
         );
 
@@ -1081,7 +1081,6 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JLabel lblNamaGuru;
     private javax.swing.JLabel lblNamaSiswa;
     private javax.swing.JPanel panelNama;
@@ -1096,6 +1095,7 @@ public class Guru_view extends javax.swing.JFrame {
     private javax.swing.JTable tblNilai;
     private javax.swing.JTable tblSiswa;
     private javax.swing.JTextArea txtAreaEditKeterangan;
+    private javax.swing.JTextArea txtAreaKomplain;
     private javax.swing.JTextArea txtAreaTambahKeterangan;
     private javax.swing.JTextField txtEditBobot;
     private javax.swing.JTextField txtEditNama;
@@ -1142,6 +1142,7 @@ public class Guru_view extends javax.swing.JFrame {
         tblNilai.getSelectionModel().addListSelectionListener(gc);
         tblGuru.getSelectionModel().addListSelectionListener(gc);
         tblKelolaSiswa.getSelectionModel().addListSelectionListener(gc);
+        tblKomplain.getSelectionModel().addListSelectionListener(gc);
     }
     
     public void addChangeListener(Guru_controller gc){
@@ -1351,6 +1352,10 @@ public class Guru_view extends javax.swing.JFrame {
 
     public JTextField getTxtSiswaEditUsername() {
         return txtSiswaEditUsername;
+    }
+
+    public JTextArea getTxtAreaKomplain() {
+        return txtAreaKomplain;
     }
 
     

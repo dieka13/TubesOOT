@@ -68,6 +68,7 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 
                 refreshTabelKompomen();
                 refreshTabelSiswa();
+                refreshTabelKomplain();
                 
                 if(isAdmin){
                     refreshTabelGuru();
@@ -236,6 +237,13 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
                 gui_guru.getTxtSiswaEditUsername().setText(tbl.getValueAt(tbl.getSelectedRow(), 3).toString());
                 gui_guru.getTxtSiswaEditKelas().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
             }
+            
+        } else if(lse.getSource() == gui_guru.getTblKomplain().getSelectionModel() && !lse.getValueIsAdjusting()){
+            
+            JTable tbl = gui_guru.getTblKomplain();
+            if(tbl.getSelectedRow() != -1){
+                gui_guru.getTxtAreaKomplain().setText(tbl.getValueAt(tbl.getSelectedRow(), 2).toString());
+            }
         }
     }
     
@@ -343,6 +351,20 @@ public class Guru_controller implements ActionListener, ListSelectionListener, C
         
         if(tm.getRowCount() > 0){
             gui_guru.getTblKelolaSiswa().setRowSelectionInterval(0,0);
+        } 
+    }
+    
+    public void refreshTabelKomplain() throws SQLException{
+        DefaultTableModel tm = (DefaultTableModel) gui_guru.getTblKomplain().getModel();
+        tm.setNumRows(0);
+        
+        ResultSet rs = md_guru.getAllKomplain(currentId);
+        while(rs.next()){
+            tm.addRow(new Object[]{ rs.getString("siswa.nama"), rs.getString("siswa.kelas"), rs.getString("pesan")});
+        }
+        
+        if(tm.getRowCount() > 0){
+            gui_guru.getTblKomplain().setRowSelectionInterval(0,0);
         } 
     }
     
